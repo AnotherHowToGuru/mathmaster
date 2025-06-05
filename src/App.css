@@ -1,0 +1,254 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* MathMaster Color Palette */
+:root {
+  --radius: 1rem; /* Increased radius for more rounded corners */
+  
+  /* Main colors */
+  --mm-blue: #1E88E5;
+  --mm-yellow: #FFD600;
+  --mm-green: #4CAF50;
+  --mm-purple: #9C27B0;
+  --mm-light-bg: #F5F7FA;
+  --mm-dark-text: #333333;
+  --mm-error: #F44336;
+  --mm-success: #8BC34A;
+  
+  /* Light theme */
+  --background: var(--mm-light-bg);
+  --foreground: var(--mm-dark-text);
+  --card: #FFFFFF;
+  --card-foreground: var(--mm-dark-text);
+  --popover: #FFFFFF;
+  --popover-foreground: var(--mm-dark-text);
+  --primary: var(--mm-blue);
+  --primary-foreground: #FFFFFF;
+  --secondary: var(--mm-yellow);
+  --secondary-foreground: var(--mm-dark-text);
+  --muted: #F1F5F9;
+  --muted-foreground: #64748B;
+  --accent: var(--mm-purple);
+  --accent-foreground: #FFFFFF;
+  --destructive: var(--mm-error);
+  --border: #E2E8F0;
+  --input: #E2E8F0;
+  --ring: var(--mm-blue);
+  
+  /* Chart colors */
+  --chart-1: var(--mm-blue);
+  --chart-2: var(--mm-yellow);
+  --chart-3: var(--mm-green);
+  --chart-4: var(--mm-purple);
+  --chart-5: #FF9800;
+  
+  /* Sidebar */
+  --sidebar: var(--mm-blue);
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #FFFFFF;
+  --sidebar-primary-foreground: var(--mm-blue);
+  --sidebar-accent: var(--mm-yellow);
+  --sidebar-accent-foreground: var(--mm-dark-text);
+  --sidebar-border: rgba(255, 255, 255, 0.2);
+  --sidebar-ring: rgba(255, 255, 255, 0.5);
+}
+
+/* Dark theme - not primary focus but included for completeness */
+.dark {
+  --background: #121826;
+  --foreground: #FFFFFF;
+  --card: #1D2939;
+  --card-foreground: #FFFFFF;
+  --popover: #1D2939;
+  --popover-foreground: #FFFFFF;
+  --primary: var(--mm-blue);
+  --primary-foreground: #FFFFFF;
+  --secondary: var(--mm-yellow);
+  --secondary-foreground: var(--mm-dark-text);
+  --muted: #2C3B52;
+  --muted-foreground: #94A3B8;
+  --accent: var(--mm-purple);
+  --accent-foreground: #FFFFFF;
+  --destructive: var(--mm-error);
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.15);
+  --ring: var(--mm-blue);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Comic Neue', 'Open Sans', sans-serif;
+  }
+}
+
+/* Custom MathMaster Styles */
+
+/* Button Styles */
+.mm-button {
+  @apply rounded-full py-3 px-6 font-bold text-center transition-all duration-200 shadow-md;
+}
+
+.mm-button-primary {
+  @apply bg-primary text-white hover:brightness-110 active:scale-95;
+}
+
+.mm-button-secondary {
+  @apply bg-secondary text-black hover:brightness-110 active:scale-95;
+}
+
+/* Card Styles */
+.mm-card {
+  @apply bg-white rounded-3xl p-6 shadow-lg border-2 border-gray-100;
+}
+
+.mm-topic-card {
+  @apply rounded-3xl p-6 shadow-lg border-2 border-gray-100 cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-xl;
+}
+
+/* Progress Bar */
+.mm-progress-bar {
+  @apply h-3 rounded-full bg-gray-200 overflow-hidden;
+}
+
+.mm-progress-fill {
+  @apply h-full bg-gradient-to-r from-green-400 to-green-600 rounded-full;
+}
+
+/* Badge Styles */
+.mm-badge {
+  @apply inline-flex items-center justify-center rounded-full px-3 py-1 text-sm font-medium;
+}
+
+/* Avatar Container */
+.mm-avatar-container {
+  @apply rounded-2xl overflow-hidden cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-md;
+}
+
+/* Parent Dashboard Styles */
+.mm-dashboard-card {
+  @apply bg-white rounded-xl p-4 shadow-md;
+}
+
+.mm-chart-container {
+  @apply h-64 w-full;
+}
+
+/* Animation Classes */
+.mm-bounce {
+  animation: mm-bounce 0.5s;
+}
+
+@keyframes mm-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.mm-fade-in {
+  animation: mm-fade-in 0.5s;
+}
+
+@keyframes mm-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Mascot Styles */
+.mm-mascot {
+  @apply absolute z-10 transition-all duration-300;
+}
+
+.mm-mascot-top-right {
+  @apply top-4 right-4;
+}
+
+.mm-mascot-bottom-right {
+  @apply bottom-4 right-4;
+}
+
+/* Speech Bubble */
+.mm-speech-bubble {
+  @apply bg-white rounded-2xl p-4 shadow-md relative;
+}
+
+.mm-speech-bubble:after {
+  content: '';
+  @apply absolute w-4 h-4 bg-white transform rotate-45;
+}
+
+.mm-speech-bubble-right:after {
+  @apply -right-2 top-1/2 -translate-y-1/2;
+}
+
+/* Layout Classes */
+.mm-container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.mm-full-height {
+  min-height: calc(100vh - 80px);
+}
+
+/* Typography */
+.mm-heading {
+  @apply font-bold text-3xl md:text-4xl;
+}
+
+.mm-subheading {
+  @apply font-bold text-xl md:text-2xl;
+}
+
+/* For child-friendly fonts */
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+
