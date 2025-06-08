@@ -1,5 +1,5 @@
 const config = {
-  apiUrl: 'https://your-backend-url-will-go-here/api'
+  apiUrl: 'https://anotherhowtoguru.pythonanywhere.com/api'
 };
 
 export default config;
