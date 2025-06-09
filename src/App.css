@@ -302,6 +302,259 @@ body {
     transform: translateY(-5px);
   }
 }
+/* Parent Layout Styles */
+.parent-layout {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.parent-header {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+  padding: 15px 0;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.logo h1 {
+  font-size: 1.8rem;
+  color: #4a90e2;
+  margin: 0;
+}
+
+.logo span {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.parent-nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.parent-nav .nav-link {
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #333;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.parent-nav .nav-link:hover {
+  background: #4a90e2;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.logout-btn {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: #ff5252;
+  transform: translateY(-2px);
+}
+
+/* Parent Dashboard */
+.parent-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.parent-dashboard .dashboard-header {
+  text-align: center;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.parent-dashboard .dashboard-header h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.parent-dashboard .dashboard-header p {
+  font-size: 1.3rem;
+  opacity: 0.9;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.dashboard-card {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+}
+
+.dashboard-card h2 {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Progress Summary */
+.progress-summary {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #4a90e2;
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Curriculum List */
+.curriculum-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.curriculum-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.curriculum-item span:first-child {
+  min-width: 80px;
+  font-weight: 500;
+}
+
+.curriculum-item span:last-child {
+  min-width: 40px;
+  text-align: right;
+  font-weight: bold;
+  color: #4a90e2;
+}
+
+/* Activity List */
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.activity-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+
+.activity-title {
+  font-weight: 500;
+  color: #333;
+}
+
+.activity-time {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.activity-score {
+  background: #4a90e2;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+/* Improvement List */
+.improvement-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.improvement-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #fff3cd;
+  border-radius: 10px;
+  border-left: 4px solid #ffc107;
+}
+
+.difficulty {
+  background: #ffc107;
+  color: #856404;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .parent-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .progress-summary {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
 
 .mascot-character {
   animation: bounce 2s infinite;
