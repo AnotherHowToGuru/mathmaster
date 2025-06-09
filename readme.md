@@ -1,6 +1,6 @@
 # MathMaster - UK Primary School Math Tutor
 
-A friendly, interactive math learning application designed for UK primary school children aged 5-10.
+A friendly, interactive math learning application designed for UK primary school children aged 5-10. 
 
 ## Features
 
