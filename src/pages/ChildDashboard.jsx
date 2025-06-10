@@ -1,168 +1,113 @@
-import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import Mascot from '../components/child/Mascot';
-
-// Mock data for topics
-const topics = [
-  { 
-    id: 'numbers', 
-    title: 'Numbers', 
-    icon: '123', 
-    color: 'bg-yellow-400',
-    progress: 65 
-  },
-  { 
-    id: 'shapes', 
-    title: 'Shapes', 
-    icon: '🔺🟦⭕', 
-    color: 'bg-green-400',
-    progress: 80 
-  },
-  { 
-    id: 'measuring', 
-    title: 'Measuring', 
-    icon: '📏', 
-    color: 'bg-sky-400',
-    progress: 40 
-  },
-  { 
-    id: 'games', 
-    title: 'Games', 
-    icon: '🎮', 
-    color: 'bg-purple-400',
-    progress: 75 
-  }
-];
-
-// Mock data for achievements
-const achievements = [
-  { id: 'star', icon: '⭐' },
-  { id: 'apple', icon: '🍎' },
-  { id: 'medal', icon: '🥇' },
-  { id: 'trophy', icon: '🏆' }
-];
-
 const ChildDashboard = () => {
-  const navigate = useNavigate();
-  
-  // Handle topic selection
-  const handleTopicClick = (topicId) => {
-    if (topicId === 'games') {
-      navigate('/child/exercise/1');
-    } else {
-      navigate(`/child/lesson/${topicId}`);
+  const topics = [
+    {
+      id: 1,
+      title: "Numbers",
+      icon: "🔢",
+      description: "Learn to count and understand numbers",
+      progress: 75,
+      color: "#ff6b6b"
+    },
+    {
+      id: 2,
+      title: "Shapes",
+      icon: "🔺",
+      description: "Discover circles, squares, and triangles",
+      progress: 60,
+      color: "#4ecdc4"
+    },
+    {
+      id: 3,
+      title: "Measuring",
+      icon: "📏",
+      description: "Learn about size, length, and weight",
+      progress: 40,
+      color: "#45b7d1"
+    },
+    {
+      id: 4,
+      title: "Games",
+      icon: "🎮",
+      description: "Fun math games and challenges",
+      progress: 85,
+      color: "#96ceb4"
     }
-  };
-  
-  // Handle challenge click
-  const handleChallengeClick = () => {
-    navigate('/child/exercise/challenge');
-  };
-  
-  // Handle achievements click
-  const handleAchievementsClick = () => {
-    navigate('/child/achievements');
-  };
-  
+  ];
+
   return (
-    <div className="pb-16">
-      <Mascot 
-        position="top-right" 
-        message="Hello! What shall we learn today?" 
-        mood="happy"
-      />
-      
-      <motion.h1 
-        className="text-3xl font-bold mb-6"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        Dashboard
-      </motion.h1>
-      
-      {/* Topics grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        {topics.map((topic, index) => (
-          <TopicCard 
-            key={topic.id}
-            topic={topic}
-            onClick={() => handleTopicClick(topic.id)}
-            delay={index * 0.1}
-          />
-        ))}
+    <div className="child-dashboard">
+      <div className="dashboard-header">
+        <h1>Hi Emma! 👋</h1>
+        <p>Ready to learn some math today?</p>
       </div>
-      
-      {/* Challenge and achievements */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <motion.div
-          className="mm-card bg-yellow-400 cursor-pointer"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          onClick={handleChallengeClick}
-        >
-          <div className="flex items-center">
-            <div className="text-4xl mr-4">⭐</div>
-            <h3 className="text-xl font-bold">Today's Challenge</h3>
+
+      <div className="quick-stats">
+        <div className="stat-card">
+          <span className="stat-icon">⭐</span>
+          <div>
+            <span className="stat-number">123</span>
+            <span className="stat-label">Stars Earned</span>
           </div>
-        </motion.div>
-        
-        <motion.div
-          className="mm-card bg-sky-100 cursor-pointer"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          onClick={handleAchievementsClick}
-        >
-          <h3 className="text-xl font-bold mb-2">My Achievements</h3>
-          <div className="flex space-x-2">
-            {achievements.map(achievement => (
-              <div 
-                key={achievement.id}
-                className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-xl"
-              >
-                {achievement.icon}
+        </div>
+        <div className="stat-card">
+          <span className="stat-icon">🏆</span>
+          <div>
+            <span className="stat-number">8</span>
+            <span className="stat-label">Achievements</span>
+          </div>
+        </div>
+        <div className="stat-card">
+          <span className="stat-icon">🔥</span>
+          <div>
+            <span className="stat-number">5</span>
+            <span className="stat-label">Day Streak</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="topics-section">
+        <h2>Choose a Topic to Learn</h2>
+        <div className="topics-grid">
+          {topics.map(topic => (
+            <div key={topic.id} className="topic-card" style={{'--topic-color': topic.color}}>
+              <div className="topic-icon">{topic.icon}</div>
+              <h3 className="topic-title">{topic.title}</h3>
+              <p className="topic-description">{topic.description}</p>
+              <div className="progress-section">
+                <div className="progress-bar">
+                  <div 
+                    className="progress-fill" 
+                    style={{width: `${topic.progress}%`, backgroundColor: topic.color}}
+                  ></div>
+                </div>
+                <span className="progress-text">{topic.progress}% Complete</span>
               </div>
-            ))}
+              <button className="topic-button" style={{backgroundColor: topic.color}}>
+                Start Learning!
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="daily-challenge">
+        <h2>🎯 Today's Challenge</h2>
+        <div className="challenge-card">
+          <div className="challenge-content">
+            <h3>Addition Adventure</h3>
+            <p>Complete 5 addition problems to earn a special star!</p>
+            <div className="challenge-progress">
+              <span>Progress: 3/5</span>
+              <div className="progress-bar">
+                <div className="progress-fill" style={{width: '60%'}}></div>
+              </div>
+            </div>
           </div>
-        </motion.div>
+          <button className="challenge-button">Continue Challenge</button>
+        </div>
       </div>
     </div>
   );
 };
 
-// Topic card component
-const TopicCard = ({ topic, onClick, delay = 0 }) => {
-  return (
-    <motion.div
-      className={`mm-topic-card ${topic.color}`}
-      whileHover={{ scale: 1.03 }}
-      whileTap={{ scale: 0.97 }}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay }}
-      onClick={onClick}
-    >
-      <div className="flex flex-col h-full">
-        <div className="text-4xl mb-2">{topic.icon}</div>
-        <h3 className="text-xl font-bold mb-4">{topic.title}</h3>
-        <div className="mt-auto">
-          <div className="mm-progress-bar">
-            <div 
-              className="mm-progress-fill" 
-              style={{ width: `${topic.progress}%` }}
-            ></div>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
 export default ChildDashboard;
-
