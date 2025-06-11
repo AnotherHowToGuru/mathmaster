@@ -8,6 +8,8 @@ import LessonScreen from './pages/LessonScreen';
 import ExerciseScreen from './pages/ExerciseScreen';
 import AchievementsScreen from './pages/AchievementsScreen';
 import ParentDashboard from './pages/ParentDashboard';
+import TopicLessons from './pages/TopicLessons';
+
 
 // Import layouts
 import ChildLayout from './layouts/ChildLayout';
