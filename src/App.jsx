@@ -26,6 +26,9 @@ function App() {
           <Route path="lesson/:id" element={<LessonScreen />} />
           <Route path="exercise/:id" element={<ExerciseScreen />} />
           <Route path="achievements" element={<AchievementsScreen />} />
+    // In the child routes section, add:
+<Route path="topic/:topicId/lessons" element={<TopicLessons />} />
+
         </Route>
         
         {/* Parent routes */}
