@@ -1,5 +1,13 @@
+import { useState, useEffect } from 'react';
+import apiService from '../services/api';
+
 const ChildDashboard = () => {
-  const topics = [
+  const [topics, setTopics] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Default topics as fallback
+  const defaultTopics = [
     {
       id: 1,
       title: "Numbers",
@@ -34,11 +42,87 @@ const ChildDashboard = () => {
     }
   ];
 
+  useEffect(() => {
+    const loadTopics = async () => {
+      try {
+        setLoading(true);
+        
+        // Test API health first
+        const healthCheck = await apiService.healthCheck();
+        console.log('API Health Check:', healthCheck);
+        
+        // Try to load topics from backend
+        const backendTopics = await apiService.getTopics();
+        console.log('Backend Topics:', backendTopics);
+        
+        if (backendTopics && backendTopics.length > 0) {
+          // Map backend data to frontend format
+          const mappedTopics = backendTopics.map((topic, index) => ({
+            id: topic.id || index + 1,
+            title: topic.name || topic.title,
+            icon: getTopicIcon(topic.name || topic.title),
+            description: topic.description || `Learn about ${topic.name || topic.title}`,
+            progress: Math.floor(Math.random() * 100), // Random progress for now
+            color: getTopicColor(index)
+          }));
+          setTopics(mappedTopics);
+        } else {
+          // Use default topics if no backend data
+          setTopics(defaultTopics);
+        }
+      } catch (error) {
+        console.error('Failed to load topics:', error);
+        setError(error.message);
+        // Use default topics as fallback
+        setTopics(defaultTopics);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadTopics();
+  }, []);
+
+  const getTopicIcon = (topicName) => {
+    const iconMap = {
+      'Numbers': '🔢',
+      'Number and Place Value': '🔢',
+      'Addition and Subtraction': '➕',
+      'Multiplication and Division': '✖️',
+      'Fractions': '🍰',
+      'Measurement': '📏',
+      'Geometry': '🔺',
+      'Statistics': '📊'
+    };
+    return iconMap[topicName] || '📚';
+  };
+
+  const getTopicColor = (index) => {
+    const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3'];
+    return colors[index % colors.length];
+  };
+
+  if (loading) {
+    return (
+      <div className="child-dashboard">
+        <div className="dashboard-header">
+          <h1>Loading... 🔄</h1>
+          <p>Getting your math topics ready!</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="child-dashboard">
       <div className="dashboard-header">
         <h1>Hi Emma! 👋</h1>
         <p>Ready to learn some math today?</p>
+        {error && (
+          <div className="error-message">
+            <p>⚠️ Using demo data (Backend: {error})</p>
+          </div>
+        )}
       </div>
 
       <div className="quick-stats">
