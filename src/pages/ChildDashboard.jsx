@@ -166,9 +166,14 @@ const ChildDashboard = () => {
                 </div>
                 <span className="progress-text">{topic.progress}% Complete</span>
               </div>
-              <button className="topic-button" style={{backgroundColor: topic.color}}>
-                Start Learning!
-              </button>
+           // In the topics.map section, replace the button with:
+<button 
+  className="topic-button" 
+  style={{backgroundColor: topic.color}}
+  onClick={() => handleTopicClick(topic.id, topic.title)}
+>
+  Start Learning!
+</button>
             </div>
           ))}
         </div>
