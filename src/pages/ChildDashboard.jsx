@@ -1,5 +1,20 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import apiService from '../services/api';
+
+const ChildDashboard = () => {
+  const navigate = useNavigate();
+  // ... existing state ...
+
+  const handleTopicClick = (topicId, topicTitle) => {
+    // Navigate to lessons for this topic
+    navigate(`/child/topic/${topicId}/lessons`, { 
+      state: { topicTitle } 
+    });
+  };
+
+  // ... rest of component
+
 
 const ChildDashboard = () => {
   const [topics, setTopics] = useState([]);
