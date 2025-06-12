@@ -45,7 +45,6 @@ const ChildDashboard = () => {
   ];
 
   const handleTopicClick = (topicId, topicTitle) => {
-    // Navigate to lessons for this topic
     navigate(`/child/topic/${topicId}/lessons`, { 
       state: { topicTitle } 
     });
@@ -56,33 +55,28 @@ const ChildDashboard = () => {
       try {
         setLoading(true);
         
-        // Test API health first
         const healthCheck = await apiService.healthCheck();
         console.log('API Health Check:', healthCheck);
         
-        // Try to load topics from backend
         const backendTopics = await apiService.getTopics();
         console.log('Backend Topics:', backendTopics);
         
         if (backendTopics && backendTopics.length > 0) {
-          // Map backend data to frontend format
           const mappedTopics = backendTopics.map((topic, index) => ({
             id: topic.id || index + 1,
             title: topic.name || topic.title,
             icon: getTopicIcon(topic.name || topic.title),
             description: topic.description || `Learn about ${topic.name || topic.title}`,
-            progress: Math.floor(Math.random() * 100), // Random progress for now
+            progress: Math.floor(Math.random() * 100),
             color: getTopicColor(index)
           }));
           setTopics(mappedTopics);
         } else {
-          // Use default topics if no backend data
           setTopics(defaultTopics);
         }
       } catch (error) {
         console.error('Failed to load topics:', error);
         setError(error.message);
-        // Use default topics as fallback
         setTopics(defaultTopics);
       } finally {
         setLoading(false);
@@ -123,11 +117,12 @@ const ChildDashboard = () => {
   }
 
   return (
-   <div className="dashboard-header">
-  <h1>Hi Emma! 👋</h1>
-  <p>Ready to learn some math today?</p>
-</div>
-)
+    <div className="child-dashboard">
+      <div className="dashboard-header">
+        <h1>Hi Emma! 👋</h1>
+        <p>Ready to learn some math today?</p>
+      </div>
+
       <div className="quick-stats">
         <div className="stat-card">
           <span className="stat-icon">⭐</span>
