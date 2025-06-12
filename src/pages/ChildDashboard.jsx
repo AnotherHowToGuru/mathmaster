@@ -123,16 +123,10 @@ const ChildDashboard = () => {
   }
 
   return (
-    <div className="child-dashboard">
-      <div className="dashboard-header">
-        <h1>Hi Emma! 👋</h1>
-        <p>Ready to learn some math today?</p>
-        {error && (
-          <div className="error-message">
-            <p>⚠️ Using demo data (Backend: {error})</p>
-          </div>
-        )}
-      </div>
+   <div className="dashboard-header">
+  <h1>Hi Emma! 👋</h1>
+  <p>Ready to learn some math today?</p>
+</div>
 
       <div className="quick-stats">
         <div className="stat-card">
