@@ -4,19 +4,6 @@ import apiService from '../services/api';
 
 const ChildDashboard = () => {
   const navigate = useNavigate();
-  // ... existing state ...
-
-  const handleTopicClick = (topicId, topicTitle) => {
-    // Navigate to lessons for this topic
-    navigate(`/child/topic/${topicId}/lessons`, { 
-      state: { topicTitle } 
-    });
-  };
-
-  // ... rest of component
-
-
-const ChildDashboard = () => {
   const [topics, setTopics] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -56,6 +43,13 @@ const ChildDashboard = () => {
       color: "#96ceb4"
     }
   ];
+
+  const handleTopicClick = (topicId, topicTitle) => {
+    // Navigate to lessons for this topic
+    navigate(`/child/topic/${topicId}/lessons`, { 
+      state: { topicTitle } 
+    });
+  };
 
   useEffect(() => {
     const loadTopics = async () => {
@@ -181,14 +175,13 @@ const ChildDashboard = () => {
                 </div>
                 <span className="progress-text">{topic.progress}% Complete</span>
               </div>
-           // In the topics.map section, replace the button with:
-<button 
-  className="topic-button" 
-  style={{backgroundColor: topic.color}}
-  onClick={() => handleTopicClick(topic.id, topic.title)}
->
-  Start Learning!
-</button>
+              <button 
+                className="topic-button" 
+                style={{backgroundColor: topic.color}}
+                onClick={() => handleTopicClick(topic.id, topic.title)}
+              >
+                Start Learning!
+              </button>
             </div>
           ))}
         </div>
