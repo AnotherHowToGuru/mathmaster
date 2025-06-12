@@ -559,3 +559,122 @@ body {
 .mascot-character {
   animation: bounce 2s infinite;
 }
+
+/* Topic Lessons Styles */
+.topic-lessons {
+  padding: 20px;
+}
+
+.lessons-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.back-button {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background: #4a90e2;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: #357abd;
+  transform: translateY(-2px);
+}
+
+.lessons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.lesson-card {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  border: 3px solid transparent;
+}
+
+.lesson-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.lesson-card.completed {
+  border-color: #4caf50;
+  background: linear-gradient(135deg, #f8fff8 0%, #e8f5e8 100%);
+}
+
+.lesson-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.lesson-header h3 {
+  color: #333;
+  margin: 0;
+}
+
+.completed-badge {
+  background: #4caf50;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.lesson-description {
+  color: #666;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.lesson-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+.difficulty {
+  color: #ff9800;
+  font-weight: bold;
+}
+
+.time {
+  color: #2196f3;
+  font-weight: bold;
+}
+
+.lesson-button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(45deg, #4a90e2, #357abd);
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.lesson-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
+}
+
+.completed .lesson-button {
+  background: linear-gradient(45deg, #4caf50, #45a049);
+}
