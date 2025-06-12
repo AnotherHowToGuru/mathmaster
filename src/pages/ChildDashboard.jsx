@@ -127,7 +127,7 @@ const ChildDashboard = () => {
   <h1>Hi Emma! 👋</h1>
   <p>Ready to learn some math today?</p>
 </div>
-
+)
       <div className="quick-stats">
         <div className="stat-card">
           <span className="stat-icon">⭐</span>
