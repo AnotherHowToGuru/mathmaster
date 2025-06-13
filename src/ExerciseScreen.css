@@ -1,0 +1,118 @@
+/* Child-friendly exercise styling */
+.exercise-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.exercise-question {
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.exercise-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.option-button {
+  background-color: #f8f9fa;
+  border: 3px solid #dee2e6;
+  border-radius: 15px;
+  padding: 15px 25px;
+  font-size: 1.5rem;
+  min-width: 80px;
+  min-height: 80px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.option-button:hover, .option-button:focus {
+  transform: scale(1.05);
+  border-color: #adb5bd;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
+.option-button.selected {
+  background-color: #e9ecef;
+  border-color: #6c757d;
+}
+
+.hint-button {
+  background-color: #ffc107;
+  color: #212529;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.hint-button:before {
+  content: "💡";
+  margin-right: 10px;
+}
+
+.hint-button:hover {
+  background-color: #ffca2c;
+  transform: scale(1.05);
+}
+
+.feedback-message {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 20px 0;
+  padding: 15px;
+  border-radius: 15px;
+  background-color: #f8f9fa;
+}
+
+.feedback-message.correct {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.feedback-message.incorrect {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.mascot-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.mascot-container img {
+  width: 120px;
+  height: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .exercise-question {
+    font-size: 1.5rem;
+  }
+  
+  .option-button {
+    min-width: 100px;
+    min-height: 100px;
+    font-size: 1.8rem;
+    padding: 20px;
+  }
+  
+  .hint-button {
+    width: 80%;
+    padding: 15px;
+    font-size: 1.3rem;
+  }
+}
