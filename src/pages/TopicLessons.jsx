@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, useLocation, Link } from 'react-router-dom';
 import apiService from '../services/api';
+import './LessonCard.css'; // Add this line near the other imports
+
 
 const TopicLessons = () => {
   const { topicId } = useParams();
