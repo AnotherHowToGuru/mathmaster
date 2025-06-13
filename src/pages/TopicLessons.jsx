@@ -80,27 +80,36 @@ const TopicLessons = () => {
       </div>
 
       <div className="lessons-grid">
-        {lessons.map(lesson => (
-          <div key={lesson.id} className={`lesson-card ${lesson.completed ? 'completed' : ''}`}>
-            <div className="lesson-header">
-              <h3>{lesson.title}</h3>
-              {lesson.completed && <span className="completed-badge">✅ Complete</span>}
-            </div>
-            <p className="lesson-description">{lesson.description}</p>
-            <div className="lesson-meta">
-              <span className="difficulty">
-                {'⭐'.repeat(lesson.difficulty)} Difficulty
-              </span>
-              <span className="time">🕐 {lesson.estimated_time} min</span>
-            </div>
-            <Link 
-              to={`/child/lesson/${lesson.id}`}
-              className="lesson-button"
-            >
-              {lesson.completed ? 'Review Lesson' : 'Start Lesson'}
-            </Link>
-          </div>
-        ))}
+      {lessons.map((lesson) => (
+  <div 
+    key={lesson.id} 
+    className="lesson-card"
+    onClick={() => navigate(`/child/lesson/${lesson.id}`)}
+    style={{ cursor: 'pointer' }}
+  >
+    <div className="lesson-header">
+      <h3>{lesson.title}</h3>
+      {lesson.completed && <span className="completed-badge">Completed</span>}
+    </div>
+    <p className="lesson-description">{lesson.description}</p>
+    <div className="lesson-meta">
+      <span>Difficulty: {renderDifficultyStars(lesson.difficulty)}</span>
+      <span>{lesson.estimated_time} mins</span>
+    </div>
+    <div className="lesson-actions">
+      <button
+        className="primary-button"
+        onClick={(e) => {
+          e.stopPropagation(); // Prevent triggering the parent's onClick
+          navigate(`/child/lesson/${lesson.id}`);
+        }}
+      >
+        Start Lesson
+      </button>
+    </div>
+  </div>
+))}
+
       </div>
     </div>
   );
