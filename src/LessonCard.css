@@ -1,0 +1,51 @@
+/* Mobile-friendly improvements for lesson cards */
+.lesson-card {
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.lesson-card:hover, .lesson-card:active {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.lesson-header h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.lesson-description {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.primary-button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 25px;
+  min-width: 120px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .lesson-card {
+    padding: 15px;
+  }
+  
+  .lesson-meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .lesson-meta span {
+    margin-bottom: 5px;
+  }
+  
+  .primary-button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+  }
+}
