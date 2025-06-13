@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Lightbulb } from 'lucide-react';
 import Mascot from '../components/child/Mascot';
+import './ExerciseScreen.css'; // Add this line near the other imports
+
 
 // Mock exercise data
 const exerciseData = {
