@@ -70,38 +70,26 @@ const TopicLessons = () => {
         <p>{topic.description}</p>
       </div>
       
-      <div className="lessons-grid">
-        {lessons.map((lesson) => (
-          <div 
-            key={lesson.id} 
-            className="lesson-card clickable"
-            style={{ cursor: 'pointer', position: 'relative' }}
-          >
-            <div className="lesson-header">
-              <h3>{lesson.title}</h3>
-              {lesson.completed && <span className="completed-badge">Completed</span>}
-            </div>
-            <p className="lesson-description">{lesson.description}</p>
-            <div className="lesson-meta">
-              <span>Difficulty: {renderDifficultyStars(lesson.difficulty)}</span>
-              <span>{lesson.estimated_time} mins</span>
-            </div>
-            
-            {/* Invisible overlay to make the entire card clickable */}
-            <div 
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                zIndex: 10,
-                cursor: 'pointer'
-              }}
-              onClick={() => navigate(`/child/lesson/${lesson.id}`)}
-            ></div>
-          </div>
-        ))}
+     {lessons.map((lesson) => (
+  <div 
+    key={lesson.id} 
+    className="lesson-card"
+    onClick={() => navigate(`/child/lesson/${lesson.id}`)}
+    style={{ cursor: 'pointer' }}
+  >
+    <div className="lesson-header">
+      <h3>{lesson.title}</h3>
+      {lesson.completed && <span className="completed-badge">Completed</span>}
+    </div>
+    <p className="lesson-description">{lesson.description}</p>
+    <div className="lesson-meta">
+      <span>Difficulty: {renderDifficultyStars(lesson.difficulty)}</span>
+      <span>{lesson.estimated_time} mins</span>
+    </div>
+    {/* Remove the Start Lesson button since the whole card is clickable */}
+  </div>
+))}
+
       </div>
     </div>
   );
