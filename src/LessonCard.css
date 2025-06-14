@@ -48,4 +48,26 @@
     padding: 15px;
     font-size: 1.1rem;
   }
+
+.clickable {
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.clickable::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
+
+.clickable > * {
+  position: relative;
+  z-index: 3;
+}
+
 }
