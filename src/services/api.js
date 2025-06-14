@@ -69,6 +69,10 @@ class ApiService {
     return await this.request(`${config.endpoints.curriculum.lessons}?topic_id=${topicId}`);
   }
 
+  async getTopic(topicId) {
+  return await this.request(`${config.endpoints.curriculum.topics}/${topicId}`);
+}
+
   // Progress methods
   async getUserProgress(userId) {
     return await this.request(`${config.endpoints.progress.user}/${userId}`);
