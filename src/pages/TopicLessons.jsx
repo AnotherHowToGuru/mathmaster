@@ -19,7 +19,7 @@ const TopicLessons = () => {
         const topicResponse = await api.getTopic(topicId);
         setTopic(topicResponse);
         
-        const lessonsResponse = await api.getLessonsByTopic(topicId);
+        const lessonsResponse = await api.getLessons(topicId);
         setLessons(lessonsResponse);
         setLoading(false);
       } catch (err) {
