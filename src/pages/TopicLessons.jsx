@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import api from '../services/api';
 import '../App.css';
-import './LessonCard.css'; // Add this line for the new CSS
+import '../LessonCard.css'; // Add this line for the new CSS
 
 const TopicLessons = () => {
   const { topicId } = useParams();
