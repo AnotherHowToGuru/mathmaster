@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import api from '../services/api';
 import '../App.css';
-import '../LessonCard.css'; // Add this line for the new CSS
+import '../LessonCard.css'; // Make sure this path is correct
 
 const TopicLessons = () => {
   const { topicId } = useParams();
@@ -19,6 +19,7 @@ const TopicLessons = () => {
         const topicResponse = await api.getTopic(topicId);
         setTopic(topicResponse);
         
+        // Make sure this matches your API service method name
         const lessonsResponse = await api.getLessons(topicId);
         setLessons(lessonsResponse);
         setLoading(false);
@@ -74,8 +75,7 @@ const TopicLessons = () => {
           <div 
             key={lesson.id} 
             className="lesson-card clickable"
-            onClick={() => navigate(`/child/lesson/${lesson.id}`)}
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: 'pointer', position: 'relative' }}
           >
             <div className="lesson-header">
               <h3>{lesson.title}</h3>
@@ -86,17 +86,20 @@ const TopicLessons = () => {
               <span>Difficulty: {renderDifficultyStars(lesson.difficulty)}</span>
               <span>{lesson.estimated_time} mins</span>
             </div>
-            <div className="lesson-actions">
-              <button
-                className="primary-button"
-                onClick={(e) => {
-                  e.stopPropagation(); // Prevent triggering the parent's onClick
-                  navigate(`/child/lesson/${lesson.id}`);
-                }}
-              >
-                Start Lesson
-              </button>
-            </div>
+            
+            {/* Invisible overlay to make the entire card clickable */}
+            <div 
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                zIndex: 10,
+                cursor: 'pointer'
+              }}
+              onClick={() => navigate(`/child/lesson/${lesson.id}`)}
+            ></div>
           </div>
         ))}
       </div>
