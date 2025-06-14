@@ -73,7 +73,7 @@ const TopicLessons = () => {
         {lessons.map((lesson) => (
           <div 
             key={lesson.id} 
-            className="lesson-card"
+            className="lesson-card clickable"
             onClick={() => navigate(`/child/lesson/${lesson.id}`)}
             style={{ cursor: 'pointer' }}
           >
