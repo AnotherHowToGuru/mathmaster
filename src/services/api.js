@@ -37,6 +37,11 @@ class ApiService {
     }
   }
 
+  // Health Check
+  async healthCheck() {
+    return this.request('/health');
+  }
+
   // Auth Endpoints
   async login(email, password) {
     return this.request('/auth/login', {
