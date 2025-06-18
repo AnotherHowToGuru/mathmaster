@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiService from '../services/api';
+import '../App.css';
+import '../TopicCard.css'; // Assuming you have a CSS file for topic cards
 
 const ChildDashboard = () => {
   const navigate = useNavigate();
@@ -8,189 +10,51 @@ const ChildDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Default topics as fallback
-  const defaultTopics = [
-    {
-      id: 1,
-      title: "Numbers",
-      icon: "🔢",
-      description: "Learn to count and understand numbers",
-      progress: 75,
-      color: "#ff6b6b"
-    },
-    {
-      id: 2,
-      title: "Shapes",
-      icon: "🔺",
-      description: "Discover circles, squares, and triangles",
-      progress: 60,
-      color: "#4ecdc4"
-    },
-    {
-      id: 3,
-      title: "Measuring",
-      icon: "📏",
-      description: "Learn about size, length, and weight",
-      progress: 40,
-      color: "#45b7d1"
-    },
-    {
-      id: 4,
-      title: "Games",
-      icon: "🎮",
-      description: "Fun math games and challenges",
-      progress: 85,
-      color: "#96ceb4"
-    }
-  ];
-
-  const handleTopicClick = (topicId, topicTitle) => {
-    navigate(`/child/topic/${topicId}/lessons`, { 
-      state: { topicTitle } 
-    });
-  };
-
   useEffect(() => {
-    const loadTopics = async () => {
+    const fetchTopics = async () => {
       try {
-        setLoading(true);
-        
-        const healthCheck = await apiService.healthCheck();
-        console.log('API Health Check:', healthCheck);
-        
-        const backendTopics = await apiService.getTopics();
-        console.log('Backend Topics:', backendTopics);
-        
-        if (backendTopics && backendTopics.length > 0) {
-          const mappedTopics = backendTopics.map((topic, index) => ({
-            id: topic.id || index + 1,
-            title: topic.name || topic.title,
-            icon: getTopicIcon(topic.name || topic.title),
-            description: topic.description || `Learn about ${topic.name || topic.title}`,
-            progress: Math.floor(Math.random() * 100),
-            color: getTopicColor(index)
-          }));
-          setTopics(mappedTopics);
-        } else {
-          setTopics(defaultTopics);
-        }
-      } catch (error) {
-        console.error('Failed to load topics:', error);
-        setError(error.message);
-        setTopics(defaultTopics);
-      } finally {
+        const response = await apiService.getTopics();
+        setTopics(response);
+        setLoading(false);
+      } catch (err) {
+        console.error('Failed to load topics:', err);
+        setError('Failed to load topics. Please try again later.');
         setLoading(false);
       }
     };
 
-    loadTopics();
+    fetchTopics();
   }, []);
 
-  const getTopicIcon = (topicName) => {
-    const iconMap = {
-      'Numbers': '🔢',
-      'Number and Place Value': '🔢',
-      'Addition and Subtraction': '➕',
-      'Multiplication and Division': '✖️',
-      'Fractions': '🍰',
-      'Measurement': '📏',
-      'Geometry': '🔺',
-      'Statistics': '📊'
-    };
-    return iconMap[topicName] || '📚';
-  };
-
-  const getTopicColor = (index) => {
-    const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3'];
-    return colors[index % colors.length];
-  };
-
   if (loading) {
-    return (
-      <div className="child-dashboard">
-        <div className="dashboard-header">
-          <h1>Loading... 🔄</h1>
-          <p>Getting your math topics ready!</p>
-        </div>
-      </div>
-    );
+    return <div className="loading">Loading topics...</div>;
+  }
+
+  if (error) {
+    return <div className="error">{error}</div>;
   }
 
   return (
     <div className="child-dashboard">
-      <div className="dashboard-header">
-        <h1>Hi Emma! 👋</h1>
-        <p>Ready to learn some math today?</p>
-      </div>
-
-      <div className="quick-stats">
-        <div className="stat-card">
-          <span className="stat-icon">⭐</span>
-          <div>
-            <span className="stat-number">123</span>
-            <span className="stat-label">Stars Earned</span>
-          </div>
-        </div>
-        <div className="stat-card">
-          <span className="stat-icon">🏆</span>
-          <div>
-            <span className="stat-number">8</span>
-            <span className="stat-label">Achievements</span>
-          </div>
-        </div>
-        <div className="stat-card">
-          <span className="stat-icon">🔥</span>
-          <div>
-            <span className="stat-number">5</span>
-            <span className="stat-label">Day Streak</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="topics-section">
-        <h2>Choose a Topic to Learn</h2>
-        <div className="topics-grid">
-          {topics.map(topic => (
-            <div key={topic.id} className="topic-card" style={{'--topic-color': topic.color}}>
-              <div className="topic-icon">{topic.icon}</div>
-              <h3 className="topic-title">{topic.title}</h3>
-              <p className="topic-description">{topic.description}</p>
-              <div className="progress-section">
-                <div className="progress-bar">
-                  <div 
-                    className="progress-fill" 
-                    style={{width: `${topic.progress}%`, backgroundColor: topic.color}}
-                  ></div>
-                </div>
-                <span className="progress-text">{topic.progress}% Complete</span>
-              </div>
-              <button 
-                className="topic-button" 
-                style={{backgroundColor: topic.color}}
-                onClick={() => handleTopicClick(topic.id, topic.title)}
-              >
-                Start Learning!
-              </button>
+      <h1>Choose a Topic to Learn</h1>
+      <div className="topics-grid">
+        {topics.map((topic) => (
+          <div
+            key={topic.id}
+            className="topic-card"
+            onClick={() => navigate(`/child/topic/${topic.id}`)}
+            style={{ cursor: 'pointer' }}
+          >
+            <div className="topic-icon">{topic.icon}</div>
+            <h3>{topic.name}</h3>
+            <p>{topic.description}</p>
+            <div className="progress-bar-container">
+              <div className="progress-bar" style={{ width: `${topic.progress || 0}%` }}></div>
             </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="daily-challenge">
-        <h2>🎯 Today's Challenge</h2>
-        <div className="challenge-card">
-          <div className="challenge-content">
-            <h3>Addition Adventure</h3>
-            <p>Complete 5 addition problems to earn a special star!</p>
-            <div className="challenge-progress">
-              <span>Progress: 3/5</span>
-              <div className="progress-bar">
-                <div className="progress-fill" style={{width: '60%'}}></div>
-              </div>
-            </div>
+            <span className="progress-text">{topic.progress || 0}% Complete</span>
+            {/* Removed the "Start Learning" button */}
           </div>
-          <button className="challenge-button">Continue Challenge</button>
-        </div>
+        ))}
       </div>
     </div>
   );
