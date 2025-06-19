@@ -1,52 +1,25 @@
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css';
-
-// Import pages
-import Login from './pages/Login';
 import ChildDashboard from './pages/ChildDashboard';
+import ParentDashboard from './pages/ParentDashboard';
+import Login from './pages/Login';
+import TopicLessons from './pages/TopicLessons';
 import LessonScreen from './pages/LessonScreen';
 import ExerciseScreen from './pages/ExerciseScreen';
-import AchievementsScreen from './pages/AchievementsScreen';
-import ParentDashboard from './pages/ParentDashboard';
-import TopicLessons from './pages/TopicLessons';
-
-
-// Import layouts
-import ChildLayout from './layouts/ChildLayout';
-import ParentLayout from './layouts/ParentLayout';
 
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Public routes */}
         <Route path="/" element={<Login />} />
-        
-        {/* Child routes */}
-        <Route path="/child" element={<ChildLayout />}>
-          <Route index element={<ChildDashboard />} />
-          <Route path="lesson/:id" element={<LessonScreen />} />
-          <Route path="exercise/:id" element={<ExerciseScreen />} />
-          <Route path="achievements" element={<AchievementsScreen />} />
-    // In the child routes section, add:
-<Route path="topic/:topicId/lessons" element={<TopicLessons />} />
-
-        </Route>
-        
-        {/* Parent routes */}
-        <Route path="/parent" element={<ParentLayout />}>
-          <Route index element={<ParentDashboard />} />
-          <Route path="settings" element={<div>Settings Page</div>} />
-          <Route path="subscription" element={<div>Subscription Page</div>} />
-          <Route path="reports" element={<div>Reports Page</div>} />
-        </Route>
-        
-        {/* Catch all - 404 */}
-        <Route path="*" element={<div>Page Not Found</div>} />
+        <Route path="/child/dashboard" element={<ChildDashboard />} />
+        <Route path="/parent/dashboard" element={<ParentDashboard />} />
+        <Route path="/child/topic/:topicId" element={<TopicLessons />} />
+        <Route path="/child/lesson/:lessonId" element={<LessonScreen />} />
+        <Route path="/child/exercise/:exerciseId" element={<ExerciseScreen />} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
-
