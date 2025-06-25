@@ -1,16 +1,16 @@
 import { Outlet, Link } from 'react-router-dom';
 import Mascot from '../components/child/Mascot';
 
-const ChildLayout = () => {
+const ChildLayout = ({ children }) => {
   return (
     <div className="child-layout">
       <aside className="sidebar">
         <div className="sidebar-header">
           <h1>🦉 MathMaster</h1>
         </div>
-        
+
         <Mascot />
-        
+
         <nav className="nav-menu">
           <ul>
             <li className="nav-item">
@@ -40,12 +40,13 @@ const ChildLayout = () => {
           </ul>
         </nav>
       </aside>
-      
+
       <main className="main-content">
-        <Outlet />
+        {children || <Outlet />}
       </main>
     </div>
   );
 };
 
 export default ChildLayout;
+
