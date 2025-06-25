@@ -16,6 +16,7 @@ const ChildDashboard = () => {
       try {
         const response = await apiService.getTopics();
         setTopics(response);
+        console.log('Topics loaded:', response);
         setLoading(false);
       } catch (err) {
         console.error('Failed to load topics:', err);
