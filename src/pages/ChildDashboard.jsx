@@ -28,6 +28,7 @@ const ChildDashboard = () => {
     fetchTopics();
   }, []);
 
+console.log('Rendering with topics:', topics, 'Loading:', loading);
   return (
     <ChildLayout>
       <div className="child-dashboard">
