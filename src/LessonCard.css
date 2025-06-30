@@ -60,13 +60,26 @@
 /* Quick Alignment Fix for LessonCard.css */
 /* Replace the .lessons-header section with this improved version */
 
+/* LessonCard.css */
+
+/* ... (keep all other existing styles above this) ... */
+
 .lessons-header {
-  text-align: center;
-  margin: 0 auto 3rem auto;
-  max-width: 100%;
-  width: 100%;
-  padding: 0 1rem;
+    text-align: center; /* Ensures text is centered */
+    margin: 20px auto; /* Centers the block element itself and adds vertical margin */
+    padding: 0 20px; /* Adds horizontal padding */
+    width: 100%; /* Ensures it takes full width */
+    max-width: 800px; /* Optional: limit width on very large screens */
+    color: #fff; /* White text for contrast */
+    font-size: 2.5em; /* Larger font size for prominence */
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle text shadow */
+    position: relative;
+    z-index: 1;
 }
+
+/* ... (keep all other existing styles below this) ... */
+
 
 .lessons-header h2 {
   color: white;
