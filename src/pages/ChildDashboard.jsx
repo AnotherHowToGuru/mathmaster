@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import apiService from '../services/api';
+import { getTopics } from '../services/api';
 import '../App.css';
 import '../TopicCard.css';
 import ChildLayout from '../layouts/ChildLayout';
