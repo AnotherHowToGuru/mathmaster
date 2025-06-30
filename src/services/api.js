@@ -1,117 +1,93 @@
-import config from '../config.js';
+// src/services/api.js
 
-class ApiService {
-  constructor() {
-    this.baseUrl = config.apiUrl;
-    this.token = localStorage.getItem('authToken');
-  }
+const API_BASE_URL = 'https://anotherhowtoguru.pythonanywhere.com/api';
 
-  async request(endpoint, options = {}) {
-    const url = `${this.baseUrl}${endpoint}`;
-    const defaultOptions = {
-      headers: {
-        'Content-Type': 'application/json',
-        ...(this.token && { 'Authorization': `Bearer ${this.token}` })
-      },
-    };
-
-    const finalOptions = {
-      ...defaultOptions,
-      ...options,
-      headers: {
-        ...defaultOptions.headers,
-        ...options.headers,
-      },
-    };
-
+// Function to fetch all topics
+export const getTopics = async ( ) => {
     try {
-      const response = await fetch(url, finalOptions);
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
-      }
-      return await response.json();
+        const response = await fetch(`${API_BASE_URL}/curriculum/topics`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
     } catch (error) {
-      console.error('API request failed:', error);
-      throw error;
+        console.error("Error fetching topics:", error);
+        throw error;
     }
-  }
+};
 
-  // Health Check
-  async healthCheck() {
-    return this.request('/health');
-  }
+// Function to fetch a single topic by ID
+export const getTopicById = async (topicId) => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/curriculum/topics/${topicId}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(`Error fetching topic ${topicId}:`, error);
+        throw error;
+    }
+};
 
-  // Auth Endpoints
-  async login(email, password) {
-    return this.request('/auth/login', {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
-    });
-  }
+// Function to fetch lessons for a specific topic
+export const getLessonsForTopic = async (topicId) => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/curriculum/topics/${topicId}/lessons`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(`Error fetching lessons for topic ${topicId}:`, error);
+        throw error;
+    }
+};
 
-  async register(username, email, password) {
-    return this.request('/auth/register', {
-      method: 'POST',
-      body: JSON.stringify({ username, email, password }),
-    });
-  }
+// Function to fetch a single lesson by ID
+export const getLessonById = async (lessonId) => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/curriculum/lessons/${lessonId}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(`Error fetching lesson ${lessonId}:`, error);
+        throw error;
+    }
+};
 
-  // User Endpoints
-  async getUserProfile() {
-    return this.request('/user/profile');
-  }
+// Function to fetch exercises for a specific lesson
+export const getExercisesForLesson = async (lessonId) => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/curriculum/lessons/${lessonId}/exercises`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(`Error fetching exercises for lesson ${lessonId}:`, error);
+        throw error;
+    }
+};
 
-  async updateChildProfile(childId, data) {
-    return this.request(`/user/children/${childId}`, {
-      method: 'PUT',
-      body: JSON.stringify(data),
-    });
-  }
-
-  // Curriculum Endpoints
-  async getTopics() {
-    return this.request('/curriculum/topics');
-  }
-
-  async getTopic(topicId) {
-    return this.request(`/curriculum/topics/${topicId}`);
-  }
-
-  async getLessons(topicId) {
-    return this.request(`/curriculum/topics/${topicId}/lessons`);
-  }
-
-  async getLesson(lessonId) {
-    return this.request(`/curriculum/lessons/${lessonId}`);
-  }
-
-  async getExercises(lessonId) {
-    return this.request(`/curriculum/lessons/${lessonId}/exercises`);
-  }
-
-  async getExercise(exerciseId) {
-    return this.request(`/curriculum/exercises/${exerciseId}`);
-  }
-
-  // Progress Endpoints
-  async getProgress() {
-    return this.request('/progress');
-  }
-
-  async updateLessonProgress(lessonId, completed) {
-    return this.request(`/progress/lessons/${lessonId}`, {
-      method: 'PUT',
-      body: JSON.stringify({ completed }),
-    });
-  }
-
-  async updateExerciseProgress(exerciseId, completed) {
-    return this.request(`/progress/exercises/${exerciseId}`, {
-      method: 'PUT',
-      body: JSON.stringify({ completed }),
-    });
-  }
-}
-
-export default new ApiService();
+// Function to fetch a single exercise by ID
+export const getExerciseById = async (exerciseId) => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/curriculum/exercises/${exerciseId}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(`Error fetching exercise ${exerciseId}:`, error);
+        throw error;
+    }
+};
