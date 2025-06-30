@@ -14,7 +14,7 @@ const ChildDashboard = () => {
   useEffect(() => {
     const fetchTopics = async () => {
       try {
-        const response = await apiService.getTopics();
+        const response = await getTopics();
         console.log('Topics loaded:', response);
         setTopics(response);
         setLoading(false);
